@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'agricola.scores.views.index'),
+    url(r'^$', 'Agricolulz.scores.views.index'),
     # url(r'^agricola/', include('agricola.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
