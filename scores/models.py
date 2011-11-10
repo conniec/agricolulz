@@ -11,10 +11,13 @@ class Game(models.Model):
     return self.playerscore_set.count()
 
   def game_winner(self):
-	players = self.player_set.all()
-	print "hello"
-	scores = [player.total_score() for player in players]
-	winner = max(scores)
+	player_scores = self.playerscore_set.all()
+	winner = ""
+	maxscore = 0
+	for each_player in player_scores:
+		if each_player.total_score() > maxscore:
+			maxscore = each_player.total_score()
+			winner = each_player.player
 	return winner.name
 
 
@@ -25,7 +28,6 @@ class Player(models.Model):
   email = models.CharField(max_length=20)
 
   def __unicode__(self):
-	print "whee"
 	return self.name
 
   def number_of_games_played(self):
@@ -41,7 +43,7 @@ class PlayerScore(models.Model):
   sheep = models.IntegerField()
   wild_boar = models.IntegerField()
   cattle = models.IntegerField()
-  unused_spaces = models.IntegerField()
+  unused_spaces = models.IntegerField(verbose_name="Unused Spaces")
   fenced_stables = models.IntegerField()
   clay_rooms = models.IntegerField()
   stone_rooms = models.IntegerField()
