@@ -1,7 +1,10 @@
 # Django settings for agricola project.
+import os.path
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+PROJECT_ROOT = os.path.dirname(__file__)
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -69,6 +72,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+	os.path.join(PROJECT_ROOT, "static"),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -100,9 +104,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'agricola.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
+	os.path.join(PROJECT_ROOT, "templates"),
+	os.path.join(PROJECT_ROOT, "scores/templates")
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

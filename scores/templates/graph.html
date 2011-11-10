@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+	
+	<p>Date played: {{game.date}}</p>
+	<p>Deck played: {{game.deck}}</p>
+	<p>
+	<table border='1'>
+		<tr>
+			<td></td>
+			{% for player_score in all_scores %}
+				<td>{{ player_score.player.name }}</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>Fields</td>
+			{% for player_score in all_scores %}
+				<td>{{ player_score.fields }}</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>Pastures</td>
+			{% for player_score in all_scores %}
+				<td>{{ player_score.pastures }}</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>Grain</td>
+			{% for player_score in all_scores %}
+				<td>{{ player_score.grain }}</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>Vegetables</td>
+			{% for player_score in all_scores %}
+				<td>{{ player_score.vegetables }}</td>
+			{% endfor %}
+		</tr>
+	</table>
+	</p>
+
+	<div id="container" style="width: 800px; height: 600px; margin: 0 auto"></div>
+
+{% endblock %}
+
+{% block extrastylesheets %}
+{% endblock %}
+
+{% block extrahead %}
+
+<script language="javascript">
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container',
+			defaultSeriesType: 'bar'
+		},
+		title: {
+			text: "{{game.date}}"
+		},
+		xAxis: {
+			categories: ['fields', 'pastures', 'grain', 'vegetables',
+			 	'sheep', 'wild_boar', 'cattle', 'unused spaces',
+				'fenced stables', 'clay rooms', 'stone rooms',
+				'family', 'card points', 'bonus points']
+		},
+		yAxis: {
+			min: -5,
+			title: {
+				text: 'Points per category'
+			}
+		},
+		legend: {
+			backgroundColor: '#FFFFFF',
+			reversed: true
+		},
+		tooltip: {
+			formatter: function() {
+				return ''+
+					 this.series.name +': '+ this.y +'';
+			}
+		},
+		credits: {
+	        enabled: false
+	    },
+		plotOptions: {
+			series: {
+				stacking: 'normal'
+			}
+		},
+	        series: [
+	        	{% for player_score in all_scores %}
+	        	{
+	        		name: '{{ player_score.player.name }}',
+	        		data: [ {{ player_score.fields }}, 
+	        				{{ player_score.pastures }},
+	        				{{ player_score.grain }},
+	        				{{ player_score.vegetables }},
+	        				{{ player_score.sheep }},
+	        				{{ player_score.wild_boar }},
+	        				{{ player_score.cattle }},
+	        				{{ player_score.unused_spaces }},
+	        				{{ player_score.fenced_stables }},
+	        				{{ player_score.clay_rooms }},
+	        				{{ player_score.stone_rooms }},
+	        				{{ player_score.family }},
+	        				{{ player_score.card_points }},
+	        				{{ player_score.bonus_points }} ]
+	        	}, 
+	        	{% endfor %}
+		// 	name: 'John',
+		// 	data: [5, 3, 4, 7, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+		// }, {
+		// 	name: 'Jane',
+		// 	data: [2, 2, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+		// }, {
+		// 	name: 'Joe',
+		// 	data: [3, 4, 4, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+			]
+	});
+	
+	
+});
+</script>
+{% endblock %}
