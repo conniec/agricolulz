@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		{% block meta %}
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		{% endblock meta %}
+		{% block extrameta %}{% endblock %}
+		
+		<title>{% block title %}Agricolulz{% endblock %}</title>
+		
+		{% load static %}
+		<script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+		<script type="text/javascript" src="../static/js/highcharts.js"></script>
+
+		{% block headstylesheets %}
+		<link rel="stylesheet" type="text/css" href="{% get_static_prefix %}css/main.css" />
+		{% endblock headstylesheets %}
+
+		{% block extrastylesheets %}{% endblock extrastylesheets %}
+		{% block extrahead %}{% endblock %}
+	</head>
+	<body>
+		
+		{% block content %}
+			{{ content }}
+		{% endblock %}
+	
+	</body>
+</html>
+		
