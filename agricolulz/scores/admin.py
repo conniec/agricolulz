@@ -1,12 +1,12 @@
-from scores.models import Player, Game, PlayerScore
+from scores.models import User, Game, PlayerScore
 from django.contrib import admin
 
-class PlayerAdmin(admin.ModelAdmin):
-  fieldsets = [
-	(None,		{'fields' : ['name']}), 
-	('Info',	{'fields' : ['email', 'date_joined']}),
-  ]
-  list_display = ('name', 'email', 'date_joined', 'number_of_games_played')
+#class UserProfileAdmin(admin.ModelAdmin):
+ #  fieldsets = [
+	# (None,		{'fields' : ['name']}), 
+	# ('Info',	{'fields' : ['email', 'date_joined']}),
+ #  ]
+  # list_display = ('name', 'email', 'date_joined', 'number_of_games_played')
 
 class PlayerScoreAdmin(admin.ModelAdmin):
   list_display = ('game_date', 'player_name', 'total_score')
@@ -23,7 +23,7 @@ class GameAdmin(admin.ModelAdmin):
   list_display = ('date', 'deck', 'number_of_players', 'game_winner')
   inlines = [PlayerInline]
 
-admin.site.register(Player, PlayerAdmin)
+#admin.site.register(UserProfileAdmin)
 admin.site.register(PlayerScore, PlayerScoreAdmin)
 admin.site.register(Game, GameAdmin)
 

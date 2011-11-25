@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 import logging
 
 class Game(models.Model):
@@ -18,19 +20,22 @@ class Game(models.Model):
                 winner = each_player.player
         return winner.name
 
-class Player(models.Model):
-    name = models.CharField(max_length=20)
-    date_joined = models.DateTimeField('date joined')
-    email = models.CharField(max_length=20)
-
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
     def __unicode__(self):
-        return self.name
+        return self.user
 
-    def number_of_games_played(self):
-        return self.playerscore_set.count()
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        profile, created = UserProfile.objects.get_or_create(user=instance)
+    
+post_save.connect(create_user_profile, sender=User)
+
+    # def number_of_games_played(self):
+    #     return self.playerscore_set.count()
 
 class PlayerScore(models.Model):
-    player = models.ForeignKey(Player)
+    player = models.ForeignKey(User)
     game = models.ForeignKey(Game)
     fields = models.IntegerField()
     pastures = models.IntegerField()
