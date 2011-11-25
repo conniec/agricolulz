@@ -2,14 +2,24 @@
 {% load static %}
 {% block content %}
 	
+	<div class="content">
+        <div class="page-header">
+          <h1>Game Information<small>Supporting text or tagline</small></h1>
+        </div>
+        <div class="row">
+          <div class="span4">
+            <h3>Secondary</h3>
+          </div>
+          <div class="span12">
+            <h2>Primary</h2>
 	<p>Date played: {{game.date}}</p>
 	<p>Deck played: {{game.deck}}</p>
 	<p>
-	<table border='1'>
+	<table class="zebra-striped">
 		<tr>
 			<td></td>
 			{% for player_score in all_scores %}
-				<td>{{ player_score.player.name }}</td>
+				<td>{{ player_score.player.username }}</td>
 			{% endfor %}
 		</tr>
 		<tr>
@@ -39,7 +49,17 @@
 	</table>
 	</p>
 
-	<div id="container" style="width: 800px; height: 600px; margin: 0 auto"></div>
+	<div id="container" style="width: 600px; height: 600px; margin: 0 auto"></div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
 
 {% endblock %}
 

@@ -13,18 +13,40 @@
 		<script type="text/javascript" src="../static/js/highcharts.js"></script>
 
 		{% block headstylesheets %}
-		<link rel="stylesheet" type="text/css" href="{% get_static_prefix %}css/main.css" />
+<!-- 		<link rel="stylesheet" type="text/css" href="{% get_static_prefix %}css/main.css" /> -->
+		<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
 		{% endblock headstylesheets %}
 
 		{% block extrastylesheets %}{% endblock extrastylesheets %}
 		{% block extrahead %}{% endblock %}
 	</head>
 	<body>
-		
+	    <div class="topbar">
+      		<div class="fill">
+        		<div class="container">
+          			<a class="brand" href="#">agricolulz</a>
+          			<ul class="nav">
+           				<li class="active"><a href="#">Home</a></li>
+           				<li><a href="#about">Players</a></li>
+            			<li><a href="#contact">Games</a></li>
+          			</ul>
+          			<form action="login/" class="pull-right">
+            			<input class="input-small" type="text" placeholder="username">
+            			<input class="input-small" type="password" placeholder="password">
+            			<button class="btn" type="submit">Sign in</button>
+          			</form>
+        		</div>
+      		</div>
+    	</div>
+		<div class="container">
 		{% block content %}
 			{{ content }}
 		{% endblock %}
-	
+		<footer>
+			<p>2011</p>
+		</footer>
+
+		</div>
 	</body>
 </html>
 		
