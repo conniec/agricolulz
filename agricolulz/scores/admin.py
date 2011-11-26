@@ -1,4 +1,4 @@
-from scores.models import User, Game, PlayerScore
+from scores.models import User, Game, PlayerScore, PlayerUser
 from django.contrib import admin
 
 #class UserProfileAdmin(admin.ModelAdmin):
@@ -24,6 +24,7 @@ class GameAdmin(admin.ModelAdmin):
   inlines = [PlayerInline]
 
 #admin.site.register(UserProfileAdmin)
+admin.site.register(PlayerUser)
 admin.site.register(PlayerScore, PlayerScoreAdmin)
 admin.site.register(Game, GameAdmin)
 
