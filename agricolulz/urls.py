@@ -6,9 +6,11 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'agricolulz.scores.views.index'),
-    url(r'^games/', include('agricolulz.scores.urls')),
-
+    url(r'^$', 'agricolulz.main.views.index'),
+    url(r'^login/', 'agricolulz.main.views.login'),
+    url(r'^signup/', 'agricolulz.main.views.signup'),
+    url(r'^players/', include('agricolulz.scores.player_urls')),
+    url(r'^games/', include('agricolulz.scores.game_urls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
