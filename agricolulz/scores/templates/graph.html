@@ -4,7 +4,7 @@
 	
 	<div class="content">
         <div class="page-header">
-          <h1>Game Information<small>Supporting text or tagline</small></h1>
+          <h1>Game Deck: {{game.deck}}<small> {{game.date}}</small></h1>
         </div>
         <div class="row">
           <div class="span4">
@@ -12,8 +12,6 @@
           </div>
           <div class="span12">
             <h2>Primary</h2>
-	<p>Date played: {{game.date}}</p>
-	<p>Deck played: {{game.deck}}</p>
 	<p>
 	<table class="zebra-striped">
 		<tr>
@@ -44,6 +42,12 @@
 			<td>Vegetables</td>
 			{% for player_score in all_scores %}
 				<td>{{ player_score.vegetables }}</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>Total Score</td>
+			{% for player_score in all_scores %}
+				<td>{{ player_score.total_score }}</td>
 			{% endfor %}
 		</tr>
 	</table>
@@ -77,7 +81,7 @@ $(document).ready(function() {
 			defaultSeriesType: 'column'
 		},
 		title: {
-			text: "{{game.date}}"
+			text: "Points by Category"
 		},
 		xAxis: {
 			categories: ['fields', 'pastures', 'grain', 'vegetables',
