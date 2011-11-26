@@ -12,25 +12,19 @@ class Game(models.Model):
         return self.playerscore_set.count()
 
     def game_winner(self):
-        # player_scores = self.playerscore_set.all()
-        # winner = ""
-        # maxscore = 0
-        # for each_player in player_scores:
-        #     if each_player.total_score() > maxscore:
-        #         maxscore = each_player.total_score()
-        #         winner = each_player.player
-        # return winner.username
-        players = self.player_set.all()
-        scores = [(player.total_score(), player.player) for player in players]
-        maxScore, winner = max(scores)
-        return winner.username
+        player_scores = self.playerscore_set.all()
+        scores = [(player.total_score(), player.player) for player in player_scores]
+        if scores:
+            maxScore, winner = max(scores)
+            return winner.username
+        return ""
 
 class PlayerUser(User):
     #user = models.OneToOneField(User)
     fav_animal = models.CharField(max_length=50, default='Sheep')
     objects = UserManager()
-    # def __unicode__(self):
-    #     return self.user
+    def __unicode__(self):
+        return self.username
 
 class UserForm(ModelForm):
     class Meta:
