@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+    <div class="content">
+
+        <div class="page-header">
+            <h1>All {{type}}<small> Information</small></h1>
+        </div>
+
+        <table class="zebra-striped">
+            {% for each in all %}
+            <tr>
+                <td><a href="/{{type}}/{{each.id}}">{{each.username}}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block extrastylesheets %}
+{% endblock %}
+
+{% block extrahead %}
+
+{% endblock %}
