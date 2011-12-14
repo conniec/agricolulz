@@ -11,7 +11,14 @@
         <table class="zebra-striped">
             {% for each in all %}
             <tr>
-                <td><a href="/{{type}}/{{each.id}}">{{each.username}}</a></td>
+                {% if type == "players" %}
+                    <td><a href="/{{type}}/{{each.id}}">{{each.username}}</a></td>
+                    <td>{{each.email}}</td>
+                {% else %}
+                    <td><a href="/{{type}}/{{each.id}}">{{each.date}}</a></td>
+                    <td>{{each.deck}}</td>
+                {% endif %}
+
             </tr>
             {% endfor %}
         </table>

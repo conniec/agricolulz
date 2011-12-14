@@ -13,8 +13,13 @@
 		<script type="text/javascript" src="../static/js/highcharts.js"></script>
 
 		{% block headstylesheets %}
-<!-- 		<link rel="stylesheet" type="text/css" href="{% get_static_prefix %}css/main.css" /> -->
+		<link rel="stylesheet" type="text/css" href="{% get_static_prefix %}css/main.css" />
 		<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+		    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
 		{% endblock headstylesheets %}
 
 		{% block extrastylesheets %}{% endblock extrastylesheets %}
@@ -22,19 +27,21 @@
 	</head>
 	<body>
 	    <div class="topbar">
+	    	<div class="topbar-inner">
       		<div class="fill">
         		<div class="container">
-          			<a class="brand" href="#">agricolulz</a>
+          			<a class="brand" href="/">agricolulz</a>
           			<ul class="nav">
-           				<li class="active"><a href="#">Home</a></li>
-           				<li><a href="#about">Players</a></li>
-            			<li><a href="#contact">Games</a></li>
+           				<li class="active"><a href="/">Home</a></li>
+           				<li><a href="/players/">Players</a></li>
+            			<li><a href="/games/">Games</a></li>
           			</ul>
-          			<form action="login/" class="pull-right">
+          			<form action="login/" class="pull-right" method="post">
             			<input class="input-small" type="text" placeholder="username">
             			<input class="input-small" type="password" placeholder="password">
             			<button class="btn" type="submit">Sign in</button>
           			</form>
+        		</div>
         		</div>
       		</div>
     	</div>

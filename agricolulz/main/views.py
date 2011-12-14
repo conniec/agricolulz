@@ -2,13 +2,14 @@
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from agricolulz.scores.models import UserForm, User
+from agricolulz.scores.models import UserForm, User, PlayerUser
 
 
 def index(request):
     context = {
         "request" : request,
     }
+    print "HERE"
     return render_to_response("index.html", context)
 
 def login(request):
@@ -33,7 +34,7 @@ def signup(request):
         print request.POST['username']
         print request.POST['email']
         print f.is_valid()
-        user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        #user = PlayerUser.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
         if f.is_valid():
             new_user = f.save()
             print request.POST['username']
