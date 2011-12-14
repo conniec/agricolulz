@@ -6,7 +6,7 @@ from agricolulz.scores.models import PlayerScore, Game, PlayerUser
 	
 def game_details(request, game_id):
 	game = Game.objects.get(pk=game_id)
-	all_scores = PlayerScore.objects.filter(game__pk=1)
+	all_scores = PlayerScore.objects.filter(game__pk=game_id)
 	all_fields = PlayerScore._meta.get_all_field_names()
 	context = {
 		"request" : request,
